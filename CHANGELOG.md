@@ -1,34 +1,25 @@
 ## Latest Changes
 
-  * Basic agent integrated with global router
-  * Fixed local planner to avoid premature route pruning at path overlaps
-  * Fixed global router behavior to be consistent with new Waypoint API
-  * LaneInvasionSensor stabilization
-    - Fix naming: Use 'LaneInvasionSensor'/'lane_invasion' instead of mixture with 'LaneDetector'/'lane_detector'
-    - Create server-side LaneInvasionSensor (to be able to access it via ROS bridge)
-  * Fix ActorList returned by ActorList.Filter(...)
-  * Add --rolename to manual_control.py
-  * Added options to no_rendering_mode.py to draw extra road information
-  * Migrate Content to AWS
-  * Adding a parser to represent the map as a connected graph of waypoints.
-  * Allow user to disable rendering and set the server timeout from the command line
-  * Add timestamp to SensorData
-  * Allow usage of hostname for carla::Client and resolve them to IP address
-  * Added `map.transform_to_geolocation` to transform Location to GNSS GeoLocation
-  * Added `id` property to waypoints, uniquely identifying waypoints up to half centimetre precision
-  * Added OpenDrive's road offset `s` as property to waypoints
-  * Fixed python client DLL error on Windows
-  * Fixed wheel's tire friction from physics control parameters.
-  * Fixed cleanup of local_planner when used by other modules
-  * Fixed Obstacle Detector
+  * New Town07, rural environment with narrow roads
   * Reworked OpenDRIVE parser and waypoints API
     - Fixed several situations in which the XODR was incorrectly parsed
-    - Exposed more information: lane marking, lane type, lane section id
+    - Exposed more information: lane marking, lane type, lane section id, s
     - API change: waypoint's `lane_type` is now an enum, `carla.LaneType`
     - API change: `carla.LaneMarking` is not an enum anymore, extended with color, type, lane change, and width
     - API extension: `map.get_waypoint` accepts an extra optional flag argument `lane_type` for filtering lane types
     - API extension: `carla.Map` can be constructed off-line out of XODR files, `carla.Map(town_name, xodr_content)`
-  * New Town07, rural environment with narrow roads
+    - API extension: `id` property to waypoints, uniquely identifying waypoints up to half centimetre precision
+  * LaneInvasionSensor stabilization
+    - API change: Renamed "lane_invasion" to "lane_detector"
+    - Added server-side LaneInvasionSensor visible to other clients
+  * Added `map.transform_to_geolocation` to transform Location to GNSS GeoLocation
+  * Added timestamp (elapsed simulation seconds) to SensorData
+  * Migrated Content to AWS
+  * Added --rolename to "manual_control.py"
+  * Added options to "no_rendering_mode.py" to draw extra road information
+  * Added "scene_layout.py" to retrieve the whole information in the scene as Python dict
+  * Added command-line arguments to simulator to disable rendering and set the server timeout
+  * Basic agent integrated with global router
   * Added new pack of assets
     - Windmill, different farm houses, silo
     - Plants corn, dandelion, poppy, and grass
@@ -37,13 +28,21 @@
   * Added marking lanes in Town03
   * Improved performance in Town01 and Town02
   * Changed yellow marking lane from Town01 and Town02 to dashed yellow marking lane
+  * Enhanced stop triggers options
   * Fixed semantic segmentation tags in Town04, Town05, Town06
   * Fixed tree collision in Town01
   * Fixed VehicleSpawnPoint in Town01
   * Fixed geo-reference of Town01 and Town07
   * Fixed floating pillars in Town04
   * Fixed floating building in Town03
-  * Enhanced stop triggers options
+  * Allow usage of hostname for carla::Client and resolve them to IP addresses
+  * Fixed local planner to avoid premature route pruning at path overlaps
+  * Fixed global router behavior to be consistent with new Waypoint API
+  * Fixed clean up of local_planner when used by other modules
+  * Fixed python client DLL error on Windows
+  * Fixed wrong type returned by `ActorList.Filter(...)`
+  * Fixed wheel's tire friction affecting all vehicles from physics control parameters
+  * Fixed obstacle detector not working
 
 ## CARLA 0.9.4
 
